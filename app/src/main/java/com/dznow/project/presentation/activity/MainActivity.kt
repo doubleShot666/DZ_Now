@@ -52,6 +52,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
             commit()
         }
+
+        supportFragmentManager.beginTransaction().
+            replace(R.id.local_posts_container,LatestArticlesFragment()).apply {
+            setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+            commit()
+        }
     }
 
     override fun onBackPressed() {
