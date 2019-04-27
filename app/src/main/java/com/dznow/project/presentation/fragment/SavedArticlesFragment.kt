@@ -15,15 +15,12 @@ import com.dznow.project.presentation.base.BaseFragment
 import com.dznow.project.presentation.contract.ArticlesView
 import com.dznow.project.presentation.model.Article
 import com.dznow.project.presentation.presenter.ArticlesPresenter
-import com.dznow.project.presentation.utils.DividerItemDecoration
 import com.dznow.project.presentation.utils.RxBus
-import com.dznow.project.presentation.utils.VerticalSpaceItemDecoration
-import kotlinx.android.synthetic.main.article_vertical_row_item.*
 import kotlinx.android.synthetic.main.main_articles_fragment_layout.fragment_title
 import kotlinx.android.synthetic.main.main_articles_fragment_layout.more_btn
 import kotlinx.android.synthetic.main.main_articles_fragment_layout.recyclerView
 
-class TopArticlesFragment : BaseFragment<ArticlesPresenter>() , ArticlesView, ArticleAdapter.ArticleAdapterListner {
+class SavedArticlesFragment() : BaseFragment<ArticlesPresenter>() , ArticlesView, ArticleAdapter.ArticleAdapterListner {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
@@ -35,22 +32,19 @@ class TopArticlesFragment : BaseFragment<ArticlesPresenter>() , ArticlesView, Ar
     }
 
     override fun initComponents() {
-        fragment_title.text = "TOP ARTICLES"
-        more_btn.text = "Plus"
-        presenter.getTopArticles()
+        fragment_title.text = "VOS ARTICLES SAUVEGARDES"
+        more_btn.text = "Tout"
+        presenter.getSavedArticles()
     }
 
     override fun initArticles(articleList: List<Article>){
-        val adapter = ArticleAdapter(articleList,context!!,R.layout.article_vertical_row_item,this)
+        val adapter = ArticleAdapter(articleList,context!!,R.layout.article_horizental_row_item,this)
         val controller : LayoutAnimationController = AnimationUtils.loadLayoutAnimation(recyclerView.context, R.anim.layout_slide_from_side)
         recyclerView.layoutManager = LinearLayoutManager(
             retrieveContext(),
-            LinearLayoutManager.VERTICAL,
+            LinearLayoutManager.HORIZONTAL,
             false
         )
-
-        recyclerView.addItemDecoration(DividerItemDecoration(context!!,R.drawable.divider))
-        recyclerView.addItemDecoration(VerticalSpaceItemDecoration(2))
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.isNestedScrollingEnabled = false
         recyclerView.adapter = adapter

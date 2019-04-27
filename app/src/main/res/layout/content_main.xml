@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/grey_300"
+        android:background="@color/grey_200"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/app_bar_main"
         tools:context=".presentation.activity.MainActivity">
@@ -17,42 +17,49 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintVertical_bias="0.0" android:layout_marginTop="8dp">
+            app:layout_constraintVertical_bias="0.0" android:layout_marginTop="0dp">
         <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
                       android:orientation="vertical">
             <FrameLayout
                     android:layout_width="match_parent"
                     android:clipToPadding="false"
-                    android:paddingBottom="20dp"
+                    android:paddingBottom="10dp"
                     android:layout_height="wrap_content" android:id="@+id/theme_container">
 
             </FrameLayout>
             <FrameLayout
                     android:layout_width="match_parent"
                     android:clipToPadding="false"
-                    android:paddingBottom="20dp"
+                    android:paddingBottom="10dp"
                     android:layout_height="wrap_content" android:id="@+id/top_posts_container">
 
             </FrameLayout>
             <FrameLayout
                     android:layout_width="match_parent"
                     android:clipToPadding="false"
-                    android:paddingBottom="20dp"
+                    android:paddingBottom="10dp"
                     android:layout_height="wrap_content" android:id="@+id/latest_posts_container">
 
             </FrameLayout>
             <FrameLayout
                     android:layout_width="match_parent"
                     android:clipToPadding="false"
-                    android:paddingBottom="20dp"
+                    android:paddingBottom="10dp"
                     android:layout_height="wrap_content" android:id="@+id/local_posts_container">
 
             </FrameLayout>
             <FrameLayout
                     android:layout_width="match_parent"
                     android:clipToPadding="false"
-                    android:paddingBottom="20dp"
+                    android:paddingBottom="10dp"
                     android:layout_height="wrap_content" android:id="@+id/saved_posts_container">
+
+            </FrameLayout>
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:clipToPadding="false"
+                    android:paddingBottom="5dp"
+                    android:layout_height="wrap_content" android:id="@+id/themes_posts_container">
 
             </FrameLayout>
         </LinearLayout>

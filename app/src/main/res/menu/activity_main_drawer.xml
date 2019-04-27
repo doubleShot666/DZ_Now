@@ -6,23 +6,23 @@
     <group android:checkableBehavior="single">
         <item
                 android:id="@+id/nav_daily_articles"
-                android:icon="@drawable/ic_menu_camera"
+                android:icon="@drawable/ic_menu_earth"
                 android:title="Articles du jour"/>
         <item
                 android:id="@+id/nav_local_articles"
-                android:icon="@drawable/ic_menu_gallery"
+                android:icon="@drawable/ic_location_on_black_24dp"
                 android:title="Articles locaux"/>
         <item
                 android:id="@+id/nav_saved_articles"
-                android:icon="@drawable/ic_menu_slideshow"
+                android:icon="@drawable/ic_bookmark_black_24dp"
                 android:title="Articles sauvegardés"/>
         <item
                 android:id="@+id/nav_themes"
-                android:icon="@drawable/ic_menu_manage"
+                android:icon="@drawable/ic_library_books_black_24dp"
                 android:title="Thèmes"/>
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Autres">
         <menu>
             <item
                     android:id="@+id/nav_options"
@@ -30,7 +30,7 @@
                     android:title="Options"/>
             <item
                     android:id="@+id/nav_exit"
-                    android:icon="@drawable/ic_menu_send"
+                    android:icon="@drawable/ic_exit_to_app_black_24dp"
                     android:title="Quitter"/>
         </menu>
     </item>

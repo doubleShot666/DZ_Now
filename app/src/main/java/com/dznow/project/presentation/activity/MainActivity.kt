@@ -1,20 +1,17 @@
 package com.dznow.project.presentation.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
-import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
-import android.widget.FrameLayout
 import com.dznow.project.R
-import com.dznow.project.presentation.fragment.ThemeFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import com.dznow.project.R.layout.content_main
-import com.dznow.project.presentation.fragment.LatestArticlesFragment
-import com.dznow.project.presentation.fragment.TopArticlesFragment
+import com.dznow.project.presentation.fragment.*
+import com.dznow.project.presentation.utils.RxBus
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -33,6 +30,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+
+        val subscribe = RxBus.listen(Pair::class.java).subscribe {
+            if (it.first as String == "ARTICLE_SELECTED") {
+                val intentArticleActivity = Intent(applicationContext, ArticleActivity::class.java)
+                intentArticleActivity.putExtra("articleId",it.second as String)
+                startActivity(intentArticleActivity)
+            }
+        }
+
 
         //init fragments
         supportFragmentManager.beginTransaction().
@@ -54,7 +60,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         supportFragmentManager.beginTransaction().
-            replace(R.id.local_posts_container,LatestArticlesFragment()).apply {
+            replace(R.id.local_posts_container, LocalArticlesFragment()).apply {
+            setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+            commit()
+        }
+
+        supportFragmentManager.beginTransaction().
+            replace(R.id.saved_posts_container, SavedArticlesFragment()).apply {
+            setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+            commit()
+        }
+
+        supportFragmentManager.beginTransaction().
+            replace(R.id.themes_posts_container,ThemesPostsFragment()).apply {
             setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
             commit()
         }
@@ -81,7 +99,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             }
             R.id.nav_themes -> {
-
+                startActivity(Intent(applicationContext,ThemeSelectionActivity::class.java))
             }
             R.id.nav_options -> {
 

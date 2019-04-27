@@ -33,9 +33,11 @@ class ArticleAdapter(articleList: List<Article>,
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
         val article = mArticles[p1]
         p0.title.text = article.title
-        p0.sourceName.text = article.source.toString()
+        p0.sourceName.text = article.source
         p0.editionTime.text = article.elapsedTime
         Glide.with(context).load(article.image).into(p0.articleImage)
+        Glide.with(context).load(article.sourceImg).into(p0.sourceImage)
+
         p0.itemView.setOnClickListener {
             //p0.title.isSelected = !p0.title.isSelected
             //p0.image.isSelected = !p0.image.isSelected
