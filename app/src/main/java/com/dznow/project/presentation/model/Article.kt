@@ -6,4 +6,5 @@ data class Article(
     var source: String,
     var sourceImg: String,
     var elapsedTime: String,
-    var image: String)
+    var image: String,
+    var url : String)

@@ -56,5 +56,9 @@ class ThemesPostsFragment : BaseFragment<ThemesArticlesPresenter>() , ThemesArti
         RxBus.publish(Pair("THEME_SELECTED",theme))
     }
 
+    override fun onArticleClicked(article: Article) {
+        RxBus.publish(Pair("ARTICLE_SELECTED",article.id))
+    }
+
 
 }

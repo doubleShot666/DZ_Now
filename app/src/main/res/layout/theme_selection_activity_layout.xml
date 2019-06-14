@@ -29,7 +29,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
-            app:title="À propos" app:titleTextColor="@color/white"
+            app:title="Selection de Thèmes" app:titleTextColor="@color/white"
             app:navigationIcon="@drawable/back_btn"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

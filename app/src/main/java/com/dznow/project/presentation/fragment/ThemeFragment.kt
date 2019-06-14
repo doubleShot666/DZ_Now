@@ -65,7 +65,7 @@ class ThemeFragment : BaseFragment<ThemePresenter>() , ThemeView, ThemeAdapter.T
     }
 
     override fun onThemeClicked(theme: Theme) {
-        RxBus.publish(Pair("THEME_SELECTED",theme.id))
+        RxBus.publish(Pair("THEME_SELECTED",theme.name))
     }
 
 

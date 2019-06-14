@@ -36,7 +36,6 @@ class TopArticlesFragment : BaseFragment<ArticlesPresenter>() , ArticlesView, Ar
 
     override fun initComponents() {
         fragment_title.text = "TOP ARTICLES"
-        more_btn.text = "Plus"
         presenter.getTopArticles()
     }
 

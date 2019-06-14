@@ -31,6 +31,10 @@ class ThemeSelectionActivity : BaseActivity<ThemeSelectionPresenter>(),ThemeSele
     override fun initComponents() {
         presenter.getSelectedThemes()
 
+        toolbar.setNavigationOnClickListener {
+            this.finish()
+        }
+
         validate_btn.setOnClickListener {
             presenter.setSelectedThemes(selectedThemes)
         }

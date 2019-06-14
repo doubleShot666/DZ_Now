@@ -1,5 +1,6 @@
 package com.dznow.project.presentation.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.GridLayoutManager
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
 import com.dznow.project.R
+import com.dznow.project.presentation.activity.ArticlesActivity
 import com.dznow.project.presentation.adapter.ArticleAdapter
 import com.dznow.project.presentation.base.BaseFragment
 import com.dznow.project.presentation.contract.ArticlesView
@@ -34,6 +36,12 @@ class SavedArticlesFragment() : BaseFragment<ArticlesPresenter>() , ArticlesView
     override fun initComponents() {
         fragment_title.text = "VOS ARTICLES SAUVEGARDES"
         more_btn.text = "Tout"
+
+        more_btn.setOnClickListener {
+            val intentArticleActivity = Intent(context, ArticlesActivity::class.java)
+            intentArticleActivity.putExtra("filter","saved")
+            startActivity(intentArticleActivity)
+        }
         presenter.getSavedArticles()
     }
 

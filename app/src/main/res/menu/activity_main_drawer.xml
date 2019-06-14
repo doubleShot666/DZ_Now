@@ -6,7 +6,7 @@
     <group android:checkableBehavior="single">
         <item
                 android:id="@+id/nav_daily_articles"
-                android:icon="@drawable/ic_menu_earth"
+                android:icon="@drawable/ic_lightbulb_outline_24dp"
                 android:title="Articles du jour"/>
         <item
                 android:id="@+id/nav_local_articles"
@@ -25,9 +25,9 @@
     <item android:title="Autres">
         <menu>
             <item
-                    android:id="@+id/nav_options"
-                    android:icon="@drawable/ic_menu_manage"
-                    android:title="Options"/>
+                    android:id="@+id/nav_language"
+                    android:icon="@drawable/ic_menu_earth"
+                    android:title="Langue"/>
             <item
                     android:id="@+id/nav_exit"
                     android:icon="@drawable/ic_exit_to_app_black_24dp"

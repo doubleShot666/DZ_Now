@@ -33,12 +33,25 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val subscribe = RxBus.listen(Pair::class.java).subscribe {
             if (it.first as String == "ARTICLE_SELECTED") {
-                val intentArticleActivity = Intent(applicationContext, ArticleActivity::class.java)
+                val intentArticleActivity = Intent(applicationContext, ArticleDetailsActivity::class.java)
                 intentArticleActivity.putExtra("articleId",it.second as String)
                 startActivity(intentArticleActivity)
             }
         }
 
+        val subscribe_theme = RxBus.listen(Pair::class.java).subscribe {
+            if (it.first as String == "THEME_SELECTED") {
+                val intentArticleActivity = Intent(applicationContext, ArticlesActivity::class.java)
+                intentArticleActivity.putExtra("filter",it.second as String)
+                startActivity(intentArticleActivity)
+            }
+        }
+
+        bookmark_btn.setOnClickListener {
+            val intentArticleActivity = Intent(applicationContext, ArticlesActivity::class.java)
+            intentArticleActivity.putExtra("filter","saved")
+            startActivity(intentArticleActivity)
+        }
 
         //init fragments
         supportFragmentManager.beginTransaction().
@@ -90,22 +103,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_daily_articles -> {
-
+                val intentArticleActivity = Intent(applicationContext, ArticlesActivity::class.java)
+                intentArticleActivity.putExtra("filter","latest")
+                startActivity(intentArticleActivity)
             }
             R.id.nav_local_articles -> {
-
+                val intentArticleActivity = Intent(applicationContext, ArticlesActivity::class.java)
+                intentArticleActivity.putExtra("filter","local")
+                startActivity(intentArticleActivity)
             }
             R.id.nav_saved_articles -> {
-
+                val intentArticleActivity = Intent(applicationContext, ArticlesActivity::class.java)
+                intentArticleActivity.putExtra("filter","saved")
+                startActivity(intentArticleActivity)
             }
             R.id.nav_themes -> {
                 startActivity(Intent(applicationContext,ThemeSelectionActivity::class.java))
             }
-            R.id.nav_options -> {
-
+            R.id.nav_language -> {
+                startActivity(Intent(applicationContext,LanguageActivity::class.java))
             }
             R.id.nav_exit -> {
-
+                finish()
             }
         }
 

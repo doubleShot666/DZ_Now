@@ -54,7 +54,7 @@ class MultiThemeArticleAdapter(articleList: HashMap<String,List<Article>>,
     }
 
     override fun onArticleClicked(article: Article) {
-
+        listener.onArticleClicked(article)
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -65,5 +65,6 @@ class MultiThemeArticleAdapter(articleList: HashMap<String,List<Article>>,
 
     interface AdapterListner {
         fun onThemeClicked(theme: String)
+        fun onArticleClicked(article: Article)
     }
 }

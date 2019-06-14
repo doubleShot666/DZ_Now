@@ -1,20 +1,49 @@
 package com.dznow.project.presentation.presenter
 
+import com.dznow.project.data.ArticlesRepositoryImp
+import com.dznow.project.domain.interactor.GetArticle
+import com.dznow.project.domain.interactor.SaveArticle
+import com.dznow.project.injection.Injection
 import com.dznow.project.presentation.base.BasePresenter
 import com.dznow.project.presentation.contract.ArticleView
 import com.dznow.project.presentation.model.Article
+import io.reactivex.observers.DisposableObserver
 
 class ArticlePresenter(articleView: ArticleView) : BasePresenter<ArticleView>(articleView) {
-    fun getArticle(articleId: String) {
-        val article = Article(
-            "3",
-            "Trump lève l’exemption sur l’achat du pétrole iranien : Washington et Riyad veulent briser Téhéran",
-            "El Watan",
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScklu-ilxBiiGNvcclXgKMGH1IaRtQpkDOzoaCK6gYfc5vFDgEEg",
-            "4 heures",
-            "https://www.elwatan.com/wp-content/uploads/2019/04/trump--e1556071431509.jpg"
-        )
 
-        view.displayArticle(article)
+    val getArticle = GetArticle(Injection.getArticlesRepository)
+    val saveArticle = SaveArticle(Injection.getArticlesRepository)
+
+    fun getArticle(articleId: String) {
+        getArticle.execute(object: DisposableObserver<Article>(){
+            override fun onComplete() {
+
+            }
+
+            override fun onNext(t: Article) {
+                view.displayArticle(t)
+            }
+
+            override fun onError(e: Throwable) {
+
+            }
+
+        },params = * kotlin.arrayOf(articleId))
+    }
+
+    fun save(article: Article) {
+        saveArticle.execute(object : DisposableObserver<Boolean>(){
+            override fun onComplete() {
+
+            }
+
+            override fun onNext(t: Boolean) {
+
+            }
+
+            override fun onError(e: Throwable) {
+
+            }
+        },params = * kotlin.arrayOf(article))
     }
 }
