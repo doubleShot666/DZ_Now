@@ -43,19 +43,19 @@ class ArticlesActivity : BaseActivity<ArticlesPresenter>(), ArticlesView , Artic
         when(intent.getStringExtra("filter")){
             "latest" ->{
                 presenter.getLatestArticles()
-                title = "Derniers articles"
+                title = getString(R.string.article_of_the_day)
             }
             "top" ->{
                 presenter.getTopArticles()
-                title = "Top articles"
+                title = getString(R.string.top_articles)
             }
             "local" ->{
                 presenter.getLocalArticles()
-                title = "Articles locaux"
+                title = getString(R.string.local_articles)
             }
             "saved" ->{
                 presenter.getSavedArticles()
-                title = "Vos articles sauvegardés"
+                title = getString(R.string.saved_articles)
             }
             else ->{
                 presenter.getThemeArticles(intent.getStringExtra("filter"))
@@ -85,7 +85,8 @@ class ArticlesActivity : BaseActivity<ArticlesPresenter>(), ArticlesView , Artic
         recyclerView.layoutAnimation = controller
         recyclerView.scheduleLayoutAnimation()
 
-        onArticleClicked(articleList[0])
+        if(twoPane)
+            onArticleClicked(articleList[0])
     }
 
     override fun onArticleClicked(article: Article) {

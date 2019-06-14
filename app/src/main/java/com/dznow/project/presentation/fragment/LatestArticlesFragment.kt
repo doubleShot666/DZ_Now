@@ -34,8 +34,8 @@ class LatestArticlesFragment : BaseFragment<ArticlesPresenter>() , ArticlesView,
     }
 
     override fun initComponents() {
-        fragment_title.text = "ARTICLES DU JOUR"
-        more_btn.text = "Tout"
+        fragment_title.text = getString(R.string.article_of_the_day)
+        more_btn.text = getString(R.string.all)
 
         more_btn.setOnClickListener {
             val intentArticleActivity = Intent(context, ArticlesActivity::class.java)

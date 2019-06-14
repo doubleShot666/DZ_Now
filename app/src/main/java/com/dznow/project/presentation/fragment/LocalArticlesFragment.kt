@@ -34,8 +34,8 @@ class LocalArticlesFragment : BaseFragment<ArticlesPresenter>() , ArticlesView, 
     }
 
     override fun initComponents() {
-        fragment_title.text = "ARTICLES LOCAUX"
-        more_btn.text = "Tout"
+        fragment_title.text = getString(R.string.local_articles)
+        more_btn.text = getString(R.string.all)
 
         more_btn.setOnClickListener {
             val intentArticleActivity = Intent(context, ArticlesActivity::class.java)

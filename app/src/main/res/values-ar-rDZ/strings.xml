@@ -11,4 +11,22 @@
     <string name="PrefFile">NdifPrefFile</string>
     <string name="LangAR">العربية</string>
     <string name="LangFR">Français</string>
+    <string name="about">حول</string>
+    <string name="validate">تأكيد</string>
+    <string name="choose_lang_1">يرجى اختيار لغة التطبيق</string>
+    <string name="choose_lang_2">اختيار اللغة</string>
+    <string name="themes">المواضيع</string>
+    <string name="selection_text_1">ما هي المواضيع التي ترغب في رؤيتها؟</string>
+    <string name="selection_text_2">رجى اختيار المواضيع التي ترغب في رؤيتها في الشاشة الرئيسية
+    </string>
+    <string name="selection_text_3">اختيار المواضيع</string>
+    <string name="article_of_the_day">مقالات اليوم</string>
+    <string name="all">جميع</string>
+    <string name="local_articles">المقالات المحلية</string>
+    <string name="saved_articles">مقالاتك المسجلة</string>
+    <string name="articles_by_theme">المقالات حسب الموضوع</string>
+    <string name="top_articles">أهم المقالات</string>
+    <string name="language">اللغة</string>
+    <string name="exit">الخروج</string>
+    <string name="other">آخر</string>
 </resources>

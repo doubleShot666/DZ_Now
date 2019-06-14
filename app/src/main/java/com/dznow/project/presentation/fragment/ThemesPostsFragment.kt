@@ -32,7 +32,7 @@ class ThemesPostsFragment : BaseFragment<ThemesArticlesPresenter>() , ThemesArti
     }
 
     override fun initComponents() {
-        fragment_title.text = "ARTICLES PAR THEME"
+        fragment_title.text = getString(R.string.articles_by_theme)
         presenter.getArticlesPerTheme()
     }
 

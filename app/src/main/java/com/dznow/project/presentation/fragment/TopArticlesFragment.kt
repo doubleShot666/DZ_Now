@@ -35,7 +35,7 @@ class TopArticlesFragment : BaseFragment<ArticlesPresenter>() , ArticlesView, Ar
     }
 
     override fun initComponents() {
-        fragment_title.text = "TOP ARTICLES"
+        fragment_title.text = getString(R.string.top_articles)
         presenter.getTopArticles()
     }
 

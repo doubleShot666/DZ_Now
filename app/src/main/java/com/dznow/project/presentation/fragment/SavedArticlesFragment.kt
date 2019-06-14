@@ -34,8 +34,8 @@ class SavedArticlesFragment() : BaseFragment<ArticlesPresenter>() , ArticlesView
     }
 
     override fun initComponents() {
-        fragment_title.text = "VOS ARTICLES SAUVEGARDES"
-        more_btn.text = "Tout"
+        fragment_title.text = getString(R.string.saved_articles)
+        more_btn.text = getString(R.string.all)
 
         more_btn.setOnClickListener {
             val intentArticleActivity = Intent(context, ArticlesActivity::class.java)

@@ -17,7 +17,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
-            app:title="Choix de langue" app:titleTextColor="@color/white"
+            app:title="@string/choose_lang_2" app:titleTextColor="@color/white"
             app:navigationIcon="@drawable/back_btn"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +30,7 @@
             app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toStartOf="@+id/textView6"
             app:layout_constraintTop_toTopOf="@+id/textView5" app:layout_constraintBottom_toBottomOf="@+id/textView5"/>
     <TextView
-            android:text="Veuillez choisir la langue de l'application"
+            android:text="@string/choose_lang_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView4" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="24dp"
@@ -57,7 +57,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/switch1" android:textSize="18sp"
             android:textColor="@android:color/black"/>
     <Button
-            android:text="Valider"
+            android:text="@string/validate"
             android:textColor="@color/white"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

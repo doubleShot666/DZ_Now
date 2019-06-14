@@ -9,7 +9,7 @@
         android:background="@drawable/layout_background">
 
     <TextView
-            android:text="Thèmes"
+            android:text="@string/themes"
             android:fontFamily="sans-serif-medium"
             android:textStyle="normal"
             android:letterSpacing="0.01"

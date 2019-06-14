@@ -10,6 +10,23 @@
     <string name="PrefFile">NdifPrefFile</string>
     <string name="LangAR">العربية</string>
     <string name="LangFR">Français</string>
-    <string name="title_item_list">Items</string>
-    <string name="title_item_detail">Item Detail</string>
+    <string name="about">À propos</string>
+    <string name="validate">Valider</string>
+    <string name="choose_lang_1">Veuillez choisir la langue de l\'application</string>
+    <string name="choose_lang_2">Choix de langue</string>
+    <string name="themes">Thèmes</string>
+    <string name="selection_text_1">Quels thèmes aimeriez vous voir ?</string>
+    <string name="selection_text_2">Veuillez choisir les thèmes que vous aimeriez voir dans l\'affichage d\'accueil
+    </string>
+    <string name="selection_text_3">Selection de Thèmes</string>
+    <string name="article_of_the_day">Articles du jour</string>
+    <string name="all">Tout</string>
+    <string name="local_articles">Articles locaux</string>
+    <string name="saved_articles">vos articles sauvegardés</string>
+    <string name="articles_by_theme">Articles par thème</string>
+    <string name="top_articles">Top articles</string>
+    <string name="language">Langue</string>
+    <string name="exit">Quitter</string>
+    <string name="other">Autres</string>
+
 </resources>

@@ -7,31 +7,31 @@
         <item
                 android:id="@+id/nav_daily_articles"
                 android:icon="@drawable/ic_lightbulb_outline_24dp"
-                android:title="Articles du jour"/>
+                android:title="@string/article_of_the_day"/>
         <item
                 android:id="@+id/nav_local_articles"
                 android:icon="@drawable/ic_location_on_black_24dp"
-                android:title="Articles locaux"/>
+                android:title="@string/local_articles"/>
         <item
                 android:id="@+id/nav_saved_articles"
                 android:icon="@drawable/ic_bookmark_black_24dp"
-                android:title="Articles sauvegardés"/>
+                android:title="@string/saved_articles"/>
         <item
                 android:id="@+id/nav_themes"
                 android:icon="@drawable/ic_library_books_black_24dp"
-                android:title="Thèmes"/>
+                android:title="@string/themes"/>
     </group>
 
-    <item android:title="Autres">
+    <item android:title="@string/other">
         <menu>
             <item
                     android:id="@+id/nav_language"
                     android:icon="@drawable/ic_menu_earth"
-                    android:title="Langue"/>
+                    android:title="@string/language"/>
             <item
                     android:id="@+id/nav_exit"
                     android:icon="@drawable/ic_exit_to_app_black_24dp"
-                    android:title="Quitter"/>
+                    android:title="@string/exit"/>
         </menu>
     </item>
 
