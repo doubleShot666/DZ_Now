@@ -1,60 +1,54 @@
-package com.dznow.project.presentation.activity
+package com.dznow.project.presentation.fragment
 
 import android.Manifest
 import android.content.Context
-import android.net.Uri
-import android.view.LayoutInflater
-import android.widget.*
-import com.bumptech.glide.Glide
-import com.dznow.project.R
-import com.dznow.project.presentation.base.BaseActivity
-import com.dznow.project.presentation.contract.ArticleView
-import com.dznow.project.presentation.model.*
-import com.dznow.project.presentation.presenter.ArticlePresenter
-import kotlinx.android.synthetic.main.article_details_activity_layout.*
-import android.view.WindowManager
-import android.view.View
 import android.content.Intent
 import android.graphics.Bitmap
-import com.bumptech.glide.request.target.SimpleTarget
-import com.bumptech.glide.request.transition.Transition
+import android.net.Uri
+import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v4.app.ActivityCompat
-import android.webkit.*
-import java.io.ByteArrayOutputStream
-import java.util.*
+import android.support.v4.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.webkit.WebResourceError
+import android.webkit.WebResourceRequest
+import android.webkit.WebView
+import android.webkit.WebViewClient
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.SimpleTarget
+import com.bumptech.glide.request.transition.Transition
+import com.dznow.project.R
+import com.dznow.project.presentation.base.BaseFragment
+import com.dznow.project.presentation.contract.ArticleView
+import com.dznow.project.presentation.model.Article
+import com.dznow.project.presentation.presenter.ArticlePresenter
+import kotlinx.android.synthetic.main.article_details_activity_layout.*
 
+class ArticleDetailsFragment : BaseFragment<ArticlePresenter>(), ArticleView {
 
-class ArticleDetailsActivity : BaseActivity<ArticlePresenter>(), ArticleView {
-
+    lateinit var articleId : String
     var bitmap : Bitmap? = null
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
+
+        arguments?.let {
+            if (it.containsKey(ARG_ARTICLE_ID)) {
+                articleId = it.getString(ARG_ARTICLE_ID)!!
+            }
+        }
+
+        return inflater.inflate(R.layout.article_details_activity_layout, container, false)
+    }
 
     override fun instantiatePresenter(): ArticlePresenter {
         return ArticlePresenter(this)
     }
 
-    override fun getContentLayout(): Int {
-        return R.layout.article_details_activity_layout
-    }
-
-
-
     override fun initComponents() {
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-        )
-
-        presenter.getArticle(intent.getStringExtra("articleId"))
-
-        scrollView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
-            if(scrollY < 50){
-                window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            } else if(scrollY > 50)
-                window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        }
-
-
+        presenter.getArticle(articleId)
     }
 
     override fun displayArticle(article: Article) {
@@ -65,7 +59,7 @@ class ArticleDetailsActivity : BaseActivity<ArticlePresenter>(), ArticleView {
 
 
 
-        Glide.with(applicationContext)
+        Glide.with(context!!)
             .asBitmap()
             .load(article.image)
             .into(object : SimpleTarget<Bitmap>() {
@@ -107,7 +101,6 @@ class ArticleDetailsActivity : BaseActivity<ArticlePresenter>(), ArticleView {
 
         share_btn.setOnClickListener {
             if(bitmap != null){
-                val uri = getImageUri(applicationContext,bitmap!!)
 
                 val text = article.title
                 val shareIntent = Intent()
@@ -128,19 +121,11 @@ class ArticleDetailsActivity : BaseActivity<ArticlePresenter>(), ArticleView {
         }
     }
 
-    fun getImageUri(inContext: Context, inImage: Bitmap): Uri {
-        ActivityCompat.requestPermissions(this,  arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),1)
-
-        val bytes = ByteArrayOutputStream()
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-        val path = MediaStore.Images.Media.insertImage(
-            contentResolver,
-            inImage,
-            UUID.randomUUID().toString() + ".png",
-            "drawing"
-        )
-        return Uri.parse(path)
+    companion object {
+        /**
+         * The fragment argument representing the item ID that this fragment
+         * represents.
+         */
+        const val ARG_ARTICLE_ID = "article_id"
     }
-
-
 }

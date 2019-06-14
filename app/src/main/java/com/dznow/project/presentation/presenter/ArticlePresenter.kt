@@ -1,6 +1,5 @@
 package com.dznow.project.presentation.presenter
 
-import com.dznow.project.data.ArticlesRepositoryImp
 import com.dznow.project.domain.interactor.GetArticle
 import com.dznow.project.domain.interactor.SaveArticle
 import com.dznow.project.injection.Injection
