@@ -34,6 +34,10 @@ class LanguageActivity : BaseActivity<LanguagePresenter>(), LanguageView {
                 false -> presenter.setLanguage(getString(R.string.LangFR))
             }
         }
+
+        toolbar.setNavigationOnClickListener {
+            this.finish()
+        }
     }
 
     override fun selectSwitch() {

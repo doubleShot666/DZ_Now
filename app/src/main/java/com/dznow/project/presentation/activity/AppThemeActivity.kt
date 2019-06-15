@@ -34,6 +34,10 @@ class AppThemeActivity : AppCompatActivity() {
             }
             finishView()
         }
+
+        toolbar.setNavigationOnClickListener {
+            this.finish()
+        }
     }
 
     fun finishView() {

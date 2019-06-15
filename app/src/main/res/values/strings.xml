@@ -39,5 +39,10 @@
     <string name="language_error_msg">Erreur lors de la modification de la langue</string>
     <string name="language_success_msg">Changement de langue réussi</string>
     <string name="theme_selection_success_msg">Sélection des thèmes réussie</string>
+    <string name="app_theme">Thème de l\'application</string>
+    <string name="light">Clair</string>
+    <string name="dark">Sombre</string>
+    <string name="theme_choice_text1">veuillez choisir le thème de l\'application</string>
+    <string name="theme_choice_text2">Choix de thème de l\'application</string>
 
 </resources>

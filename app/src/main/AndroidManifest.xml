@@ -21,7 +21,7 @@
         </activity>
         <activity android:name=".presentation.activity.ThemeSelectionActivity"/>
         <activity android:name=".presentation.activity.ArticleDetailsActivity"/>
-        <activity android:name=".presentation.activity.ArticlesListingListingActivity"/>
+        <activity android:name=".presentation.activity.ArticlesListingActivity"/>
         <activity android:name=".presentation.activity.LanguageActivity"/>
         <activity android:name=".presentation.activity.SplashScreenActivity">
             <intent-filter>

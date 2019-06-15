@@ -40,4 +40,9 @@
     <string name="language_error_msg">خطأ أثناء تغيير اللغة</string>
     <string name="language_success_msg">تغيير اللغة بنجاح</string>
     <string name="theme_selection_success_msg">اختيار المواضيع  بنجاح</string>
+    <string name="app_theme">ألوان التطبيق</string>
+    <string name="light">فاتح</string>
+    <string name="dark">مظلم</string>
+    <string name="theme_choice_text1">الرجاء اختيار لون التطبيق</string>
+    <string name="theme_choice_text2">اختيار لون التطبيق</string>
 </resources>

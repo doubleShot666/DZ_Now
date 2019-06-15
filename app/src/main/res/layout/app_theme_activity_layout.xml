@@ -17,7 +17,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
-            app:title="Choix de thème de l'application" app:titleTextColor="@color/white"
+            app:title="@string/theme_choice_text2" app:titleTextColor="@color/white"
             app:navigationIcon="@drawable/back_btn"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -30,14 +30,14 @@
             app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toStartOf="@+id/textView6"
             app:layout_constraintTop_toTopOf="@+id/textView5" app:layout_constraintBottom_toBottomOf="@+id/textView5"/>
     <TextView
-            android:text="veuillez choisir le thème de l'application"
+            android:text="@string/theme_choice_text1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView4" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="24dp"
             android:layout_marginTop="24dp" android:textSize="18sp"
             android:textColor="@android:color/black" app:layout_constraintTop_toBottomOf="@+id/toolbar"/>
     <TextView
-            android:text="Clair"
+            android:text="@string/light"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView5"
@@ -48,7 +48,7 @@
             android:textColor="@android:color/black" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/validate_btn"/>
     <TextView
-            android:text="Sombre"
+            android:text="@string/dark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView6"

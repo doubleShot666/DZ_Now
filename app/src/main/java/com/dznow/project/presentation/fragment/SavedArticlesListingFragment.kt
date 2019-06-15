@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
 import com.dznow.project.R
-import com.dznow.project.presentation.activity.ArticlesListingListingActivity
+import com.dznow.project.presentation.activity.ArticlesListingActivity
 import com.dznow.project.presentation.adapter.ArticleAdapter
 import com.dznow.project.presentation.base.BaseFragment
 import com.dznow.project.presentation.contract.ArticlesListingView
@@ -36,7 +36,7 @@ class SavedArticlesListingFragment() : BaseFragment<ArticlesListingPresenter>() 
         more_btn.text = getString(R.string.all)
 
         more_btn.setOnClickListener {
-            val intentArticleActivity = Intent(context, ArticlesListingListingActivity::class.java)
+            val intentArticleActivity = Intent(context, ArticlesListingActivity::class.java)
             intentArticleActivity.putExtra("filter","saved")
             startActivity(intentArticleActivity)
         }

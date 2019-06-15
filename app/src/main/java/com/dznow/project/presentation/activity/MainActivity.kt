@@ -41,14 +41,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val subscribe_theme = RxBus.listen(Pair::class.java).subscribe {
             if (it.first as String == RxBus.MSG_THEME_SELECTED) {
-                val intentArticleActivity = Intent(applicationContext, ArticlesListingListingActivity::class.java)
+                val intentArticleActivity = Intent(applicationContext, ArticlesListingActivity::class.java)
                 intentArticleActivity.putExtra("filter",it.second as String)
                 startActivity(intentArticleActivity)
             }
         }
 
         bookmark_btn.setOnClickListener {
-            val intentArticleActivity = Intent(applicationContext, ArticlesListingListingActivity::class.java)
+            val intentArticleActivity = Intent(applicationContext, ArticlesListingActivity::class.java)
             intentArticleActivity.putExtra("filter","saved")
             startActivity(intentArticleActivity)
         }
@@ -102,17 +102,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_daily_articles -> {
-                val intentArticleActivity = Intent(applicationContext, ArticlesListingListingActivity::class.java)
+                val intentArticleActivity = Intent(applicationContext, ArticlesListingActivity::class.java)
                 intentArticleActivity.putExtra("filter","latest")
                 startActivity(intentArticleActivity)
             }
             R.id.nav_local_articles -> {
-                val intentArticleActivity = Intent(applicationContext, ArticlesListingListingActivity::class.java)
+                val intentArticleActivity = Intent(applicationContext, ArticlesListingActivity::class.java)
                 intentArticleActivity.putExtra("filter","local")
                 startActivity(intentArticleActivity)
             }
             R.id.nav_saved_articles -> {
-                val intentArticleActivity = Intent(applicationContext, ArticlesListingListingActivity::class.java)
+                val intentArticleActivity = Intent(applicationContext, ArticlesListingActivity::class.java)
                 intentArticleActivity.putExtra("filter","saved")
                 startActivity(intentArticleActivity)
             }

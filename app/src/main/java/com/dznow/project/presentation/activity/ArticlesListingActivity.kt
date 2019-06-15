@@ -18,7 +18,7 @@ import com.dznow.project.presentation.utils.VerticalSpaceItemDecoration
 import kotlinx.android.synthetic.main.articles_activity_layout.*
 
 
-class ArticlesListingListingActivity : BaseActivity<ArticlesListingPresenter>(), ArticlesListingView , ArticleAdapter.ArticleAdapterListner {
+class ArticlesListingActivity : BaseActivity<ArticlesListingPresenter>(), ArticlesListingView , ArticleAdapter.ArticleAdapterListner {
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet

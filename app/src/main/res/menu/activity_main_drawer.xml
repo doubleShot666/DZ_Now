@@ -26,8 +26,8 @@
         <menu>
             <item
                     android:id="@+id/nav_app_theme"
-                    android:icon="@drawable/ic_menu_earth"
-                    android:title="Thème de l'application"/>
+                    android:icon="@drawable/ic_invert_colors_24dp"
+                    android:title="@string/app_theme"/>
 
             <item
                     android:id="@+id/nav_language"
