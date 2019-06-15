@@ -3,7 +3,6 @@ package com.dznow.project.presentation.fragment
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -11,26 +10,26 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
 import com.dznow.project.R
-import com.dznow.project.presentation.activity.ArticlesActivity
+import com.dznow.project.presentation.activity.ArticlesListingListingActivity
 import com.dznow.project.presentation.adapter.ArticleAdapter
 import com.dznow.project.presentation.base.BaseFragment
-import com.dznow.project.presentation.contract.ArticlesView
+import com.dznow.project.presentation.contract.ArticlesListingView
 import com.dznow.project.presentation.model.Article
-import com.dznow.project.presentation.presenter.ArticlesPresenter
+import com.dznow.project.presentation.presenter.ArticlesListingPresenter
 import com.dznow.project.presentation.utils.RxBus
 import kotlinx.android.synthetic.main.main_articles_fragment_layout.fragment_title
 import kotlinx.android.synthetic.main.main_articles_fragment_layout.more_btn
 import kotlinx.android.synthetic.main.main_articles_fragment_layout.recyclerView
 
-class LatestArticlesFragment : BaseFragment<ArticlesPresenter>() , ArticlesView, ArticleAdapter.ArticleAdapterListner {
+class LatestArticlesListingFragment : BaseFragment<ArticlesListingPresenter>() , ArticlesListingView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         return inflater.inflate(R.layout.main_articles_fragment_layout, container, false)
     }
 
-    override fun instantiatePresenter(): ArticlesPresenter {
-        return ArticlesPresenter(this)
+    override fun instantiatePresenter(): ArticlesListingPresenter {
+        return ArticlesListingPresenter(this)
     }
 
     override fun initComponents() {
@@ -38,7 +37,7 @@ class LatestArticlesFragment : BaseFragment<ArticlesPresenter>() , ArticlesView,
         more_btn.text = getString(R.string.all)
 
         more_btn.setOnClickListener {
-            val intentArticleActivity = Intent(context, ArticlesActivity::class.java)
+            val intentArticleActivity = Intent(context, ArticlesListingListingActivity::class.java)
             intentArticleActivity.putExtra("filter","latest")
             startActivity(intentArticleActivity)
         }
@@ -46,7 +45,12 @@ class LatestArticlesFragment : BaseFragment<ArticlesPresenter>() , ArticlesView,
     }
 
     override fun initArticles(articleList: List<Article>){
-        val adapter = ArticleAdapter(articleList,context!!,R.layout.article_horizental_row_item,this)
+        val adapter = ArticleAdapter(articleList,context!!,R.layout.article_horizental_row_item,
+            object : ArticleAdapter.ArticleAdapterListner {
+                override fun onArticleClicked(article: Article) {
+                    RxBus.publish(Pair(RxBus.MSG_ARTICLE_SELECTED,article.id))
+                }
+            })
         val controller : LayoutAnimationController = AnimationUtils.loadLayoutAnimation(recyclerView.context, R.anim.layout_slide_from_side)
         recyclerView.layoutManager = LinearLayoutManager(
             retrieveContext(),
@@ -59,10 +63,4 @@ class LatestArticlesFragment : BaseFragment<ArticlesPresenter>() , ArticlesView,
         recyclerView.layoutAnimation = controller
         recyclerView.scheduleLayoutAnimation()
     }
-
-    override fun onArticleClicked(article: Article) {
-        RxBus.publish(Pair("ARTICLE_SELECTED",article.id))
-    }
-
-
 }

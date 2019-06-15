@@ -4,9 +4,9 @@ import com.dznow.project.domain.repository.LanguageAccessor
 import io.reactivex.Observable
 
 /**
- * This class implements [UserCase] and builds an observable on changing language operation result
- * @author brenco tech team
- * @see UserCase
+ * Cette class implémente [UseCase] et créer un observable sur le résultat du cas d'utilisation de
+ * changement de langue.
+ * @see UseCase
  * @see LanguageAccessor
  */
 class ChangeLanguage(private val languageAccessor: LanguageAccessor) : UseCase<Boolean, Any?>() {

@@ -9,56 +9,54 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
 import com.dznow.project.R
-import com.dznow.project.presentation.adapter.MultiThemeArticleAdapter
+import com.dznow.project.presentation.adapter.ArticleAdapter
 import com.dznow.project.presentation.base.BaseFragment
-import com.dznow.project.presentation.contract.ThemesArticleView
+import com.dznow.project.presentation.contract.ArticlesListingView
 import com.dznow.project.presentation.model.Article
-import com.dznow.project.presentation.presenter.ThemesArticlesPresenter
+import com.dznow.project.presentation.presenter.ArticlesListingPresenter
 import com.dznow.project.presentation.utils.DividerItemDecoration
 import com.dznow.project.presentation.utils.RxBus
 import com.dznow.project.presentation.utils.VerticalSpaceItemDecoration
+import kotlinx.android.synthetic.main.main_articles_fragment_layout.fragment_title
 import kotlinx.android.synthetic.main.main_articles_fragment_layout.recyclerView
-import kotlinx.android.synthetic.main.themes_articles_fragment_layout.*
 
-class ThemesPostsFragment : BaseFragment<ThemesArticlesPresenter>() , ThemesArticleView, MultiThemeArticleAdapter.AdapterListner {
+class TopArticlesListingFragment : BaseFragment<ArticlesListingPresenter>() , ArticlesListingView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        return inflater.inflate(R.layout.themes_articles_fragment_layout, container, false)
+        return inflater.inflate(R.layout.main_articles_fragment_layout, container, false)
     }
 
-    override fun instantiatePresenter(): ThemesArticlesPresenter {
-        return ThemesArticlesPresenter(this)
+    override fun instantiatePresenter(): ArticlesListingPresenter {
+        return ArticlesListingPresenter(this)
     }
 
     override fun initComponents() {
-        fragment_title.text = getString(R.string.articles_by_theme)
-        presenter.getArticlesPerTheme()
+        fragment_title.text = getString(R.string.top_articles)
+        presenter.getTopArticles()
     }
 
-    override fun initArticles(articleList: HashMap<String,List<Article>>){
-        val adapter = MultiThemeArticleAdapter(articleList,context!!,R.layout.main_articles_fragment_layout,this)
+    override fun initArticles(articleList: List<Article>){
+        val adapter = ArticleAdapter(articleList,context!!,R.layout.article_vertical_row_item,
+            object : ArticleAdapter.ArticleAdapterListner {
+                override fun onArticleClicked(article: Article) {
+                    RxBus.publish(Pair(RxBus.MSG_ARTICLE_SELECTED,article.id))
+                }
+            })
         val controller : LayoutAnimationController = AnimationUtils.loadLayoutAnimation(recyclerView.context, R.anim.layout_slide_from_side)
         recyclerView.layoutManager = LinearLayoutManager(
             retrieveContext(),
             LinearLayoutManager.VERTICAL,
             false
         )
-        recyclerView.addItemDecoration(VerticalSpaceItemDecoration(32))
+
+        recyclerView.addItemDecoration(DividerItemDecoration(context!!,R.drawable.divider))
+        recyclerView.addItemDecoration(VerticalSpaceItemDecoration(2))
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.isNestedScrollingEnabled = false
         recyclerView.adapter = adapter
         recyclerView.layoutAnimation = controller
         recyclerView.scheduleLayoutAnimation()
     }
-
-    override fun onThemeClicked(theme: String) {
-        RxBus.publish(Pair("THEME_SELECTED",theme))
-    }
-
-    override fun onArticleClicked(article: Article) {
-        RxBus.publish(Pair("ARTICLE_SELECTED",article.id))
-    }
-
 
 }

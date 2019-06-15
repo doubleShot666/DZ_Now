@@ -1,10 +1,3 @@
-/**
- * file name : GridSpacingItemDecoration
- *
- * Author : Sami DJOUADI
- *
- * Copyright © 2019 Trend-Tech
- */
 package com.dznow.project.presentation.utils
 
 import android.graphics.Rect

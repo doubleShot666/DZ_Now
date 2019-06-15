@@ -32,28 +32,27 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         nav_view.setNavigationItemSelectedListener(this)
 
         val subscribe = RxBus.listen(Pair::class.java).subscribe {
-            if (it.first as String == "ARTICLE_SELECTED") {
+            if (it.first as String == RxBus.MSG_ARTICLE_SELECTED) {
                 val intentArticleActivity = Intent(applicationContext, ArticleDetailsActivity::class.java)
-                intentArticleActivity.putExtra("articleId",it.second as String)
+                intentArticleActivity.putExtra(ArticleDetailsActivity.ARG_ARTICLE_ID,it.second as String)
                 startActivity(intentArticleActivity)
             }
         }
 
         val subscribe_theme = RxBus.listen(Pair::class.java).subscribe {
-            if (it.first as String == "THEME_SELECTED") {
-                val intentArticleActivity = Intent(applicationContext, ArticlesActivity::class.java)
+            if (it.first as String == RxBus.MSG_THEME_SELECTED) {
+                val intentArticleActivity = Intent(applicationContext, ArticlesListingListingActivity::class.java)
                 intentArticleActivity.putExtra("filter",it.second as String)
                 startActivity(intentArticleActivity)
             }
         }
 
         bookmark_btn.setOnClickListener {
-            val intentArticleActivity = Intent(applicationContext, ArticlesActivity::class.java)
+            val intentArticleActivity = Intent(applicationContext, ArticlesListingListingActivity::class.java)
             intentArticleActivity.putExtra("filter","saved")
             startActivity(intentArticleActivity)
         }
 
-        //init fragments
         supportFragmentManager.beginTransaction().
             replace(R.id.theme_container,ThemeFragment()).apply {
             setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
@@ -61,31 +60,31 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         supportFragmentManager.beginTransaction().
-            replace(R.id.top_posts_container,TopArticlesFragment()).apply {
+            replace(R.id.top_posts_container,TopArticlesListingFragment()).apply {
             setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
             commit()
         }
 
         supportFragmentManager.beginTransaction().
-            replace(R.id.latest_posts_container,LatestArticlesFragment()).apply {
+            replace(R.id.latest_posts_container,LatestArticlesListingFragment()).apply {
             setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
             commit()
         }
 
         supportFragmentManager.beginTransaction().
-            replace(R.id.local_posts_container, LocalArticlesFragment()).apply {
+            replace(R.id.local_posts_container, LocalArticlesListingFragment()).apply {
             setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
             commit()
         }
 
         supportFragmentManager.beginTransaction().
-            replace(R.id.saved_posts_container, SavedArticlesFragment()).apply {
+            replace(R.id.saved_posts_container, SavedArticlesListingFragment()).apply {
             setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
             commit()
         }
 
         supportFragmentManager.beginTransaction().
-            replace(R.id.themes_posts_container,ThemesPostsFragment()).apply {
+            replace(R.id.themes_posts_container,ArticlesByThemeFragment()).apply {
             setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
             commit()
         }
@@ -103,22 +102,25 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_daily_articles -> {
-                val intentArticleActivity = Intent(applicationContext, ArticlesActivity::class.java)
+                val intentArticleActivity = Intent(applicationContext, ArticlesListingListingActivity::class.java)
                 intentArticleActivity.putExtra("filter","latest")
                 startActivity(intentArticleActivity)
             }
             R.id.nav_local_articles -> {
-                val intentArticleActivity = Intent(applicationContext, ArticlesActivity::class.java)
+                val intentArticleActivity = Intent(applicationContext, ArticlesListingListingActivity::class.java)
                 intentArticleActivity.putExtra("filter","local")
                 startActivity(intentArticleActivity)
             }
             R.id.nav_saved_articles -> {
-                val intentArticleActivity = Intent(applicationContext, ArticlesActivity::class.java)
+                val intentArticleActivity = Intent(applicationContext, ArticlesListingListingActivity::class.java)
                 intentArticleActivity.putExtra("filter","saved")
                 startActivity(intentArticleActivity)
             }
             R.id.nav_themes -> {
                 startActivity(Intent(applicationContext,ThemeSelectionActivity::class.java))
+            }
+            R.id.nav_app_theme -> {
+                startActivity(Intent(applicationContext,AppThemeActivity::class.java))
             }
             R.id.nav_language -> {
                 startActivity(Intent(applicationContext,LanguageActivity::class.java))

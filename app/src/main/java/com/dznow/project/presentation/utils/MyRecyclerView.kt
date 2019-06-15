@@ -1,10 +1,3 @@
-/**
- * file name : MyRecyclerView
- *
- * Author : Sami DJOUADI
- *
- * Copyright © 2019 Trend-Tech
- */
 package com.dznow.project.presentation.utils
 
 import android.content.Context
@@ -18,16 +11,9 @@ import android.view.ViewGroup
 
 class MyRecyclerView : RecyclerView {
 
-    /** @see View.View
-     */
+
     constructor(context: Context) : super(context)
-
-    /** @see View.View
-     */
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
-
-    /** @see View.View
-     */
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle)
 
     override fun attachLayoutAnimationParameters(

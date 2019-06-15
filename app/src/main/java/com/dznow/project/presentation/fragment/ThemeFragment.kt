@@ -18,7 +18,7 @@ import com.dznow.project.presentation.presenter.ThemePresenter
 import com.dznow.project.presentation.utils.RxBus
 import kotlinx.android.synthetic.main.theme_fragment_layout.recyclerView
 
-class ThemeFragment : BaseFragment<ThemePresenter>() , ThemeView, ThemeAdapter.ThemeAdapterListner {
+class ThemeFragment : BaseFragment<ThemePresenter>() , ThemeView {
 
     private var expanded  = false
 
@@ -37,8 +37,15 @@ class ThemeFragment : BaseFragment<ThemePresenter>() , ThemeView, ThemeAdapter.T
     }
 
     override fun initThemes(themeList: List<Theme>){
-        val adapter = ThemeAdapter(themeList,context!!,this)
+        val adapter = ThemeAdapter(themeList,context!!,
+            object : ThemeAdapter.ThemeAdapterListner {
+                override fun onThemeClicked(theme: Theme) {
+                    RxBus.publish(Pair(RxBus.MSG_THEME_SELECTED,theme.name))
+                }
+            })
+
         val controller : LayoutAnimationController
+
         when(expanded){
             true -> {
                 recyclerView.layoutManager = GridLayoutManager(
@@ -63,10 +70,5 @@ class ThemeFragment : BaseFragment<ThemePresenter>() , ThemeView, ThemeAdapter.T
         recyclerView.layoutAnimation = controller
         recyclerView.scheduleLayoutAnimation()
     }
-
-    override fun onThemeClicked(theme: Theme) {
-        RxBus.publish(Pair("THEME_SELECTED",theme.name))
-    }
-
 
 }

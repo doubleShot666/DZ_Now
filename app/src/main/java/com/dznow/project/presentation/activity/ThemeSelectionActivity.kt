@@ -4,6 +4,7 @@ import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.GridLayoutManager
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
+import android.widget.Toast
 import com.dznow.project.R
 import com.dznow.project.presentation.adapter.ThemeSelectionAdapter
 import com.dznow.project.presentation.base.BaseActivity
@@ -41,6 +42,9 @@ class ThemeSelectionActivity : BaseActivity<ThemeSelectionPresenter>(),ThemeSele
     }
 
     override fun finishView() {
+
+        Toast.makeText(applicationContext,getString(R.string.theme_selection_success_msg), Toast.LENGTH_SHORT).show()
+
         this.finish()
     }
 

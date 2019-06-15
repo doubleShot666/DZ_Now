@@ -1,14 +1,13 @@
 package com.dznow.project.presentation.presenter
 
-import com.dznow.project.data.ArticlesRepositoryImp
 import com.dznow.project.domain.interactor.GetArticlesList
 import com.dznow.project.injection.Injection
 import com.dznow.project.presentation.base.BasePresenter
-import com.dznow.project.presentation.contract.ArticlesView
+import com.dznow.project.presentation.contract.ArticlesListingView
 import com.dznow.project.presentation.model.Article
 import io.reactivex.observers.DisposableObserver
 
-class ArticlesPresenter(articlesView: ArticlesView) : BasePresenter<ArticlesView>(articlesView) {
+class ArticlesListingPresenter(articlesView: ArticlesListingView) : BasePresenter<ArticlesListingView>(articlesView) {
 
     val getArticlesList = GetArticlesList(Injection.getArticlesRepository)
 

@@ -10,15 +10,15 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
 import com.dznow.project.presentation.adapter.ArticleAdapter
-import com.dznow.project.presentation.contract.ArticlesView
+import com.dznow.project.presentation.contract.ArticlesListingView
 import com.dznow.project.presentation.fragment.ArticleDetailsFragment
-import com.dznow.project.presentation.presenter.ArticlesPresenter
+import com.dznow.project.presentation.presenter.ArticlesListingPresenter
 import com.dznow.project.presentation.utils.DividerItemDecoration
 import com.dznow.project.presentation.utils.VerticalSpaceItemDecoration
 import kotlinx.android.synthetic.main.articles_activity_layout.*
 
 
-class ArticlesActivity : BaseActivity<ArticlesPresenter>(), ArticlesView , ArticleAdapter.ArticleAdapterListner {
+class ArticlesListingListingActivity : BaseActivity<ArticlesListingPresenter>(), ArticlesListingView , ArticleAdapter.ArticleAdapterListner {
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -26,8 +26,8 @@ class ArticlesActivity : BaseActivity<ArticlesPresenter>(), ArticlesView , Artic
      */
     private var twoPane: Boolean = false
 
-    override fun instantiatePresenter(): ArticlesPresenter {
-        return ArticlesPresenter(this)
+    override fun instantiatePresenter(): ArticlesListingPresenter {
+        return ArticlesListingPresenter(this)
     }
 
     override fun getContentLayout(): Int {
@@ -102,7 +102,7 @@ class ArticlesActivity : BaseActivity<ArticlesPresenter>(), ArticlesView , Artic
                 .commit()
         }else{
             val intentArticleActivity = Intent(applicationContext, ArticleDetailsActivity::class.java)
-            intentArticleActivity.putExtra("articleId",article.id)
+            intentArticleActivity.putExtra(ArticleDetailsActivity.ARG_ARTICLE_ID,article.id)
             startActivity(intentArticleActivity)
         }
 

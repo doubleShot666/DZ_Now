@@ -14,4 +14,34 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
+
+
+    <style name="Theme1" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="textColor1">@color/white</item>
+        <item name="textColor2">@color/black</item>
+        <item name="textColor3">@color/grey_900</item>
+        <item name="textColor4">@color/grey_700</item>
+
+        <item name="background1">@color/white</item>
+        <item name="background2">@color/grey_300</item>
+    </style>
+
+    <style name="Theme2" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="textColor1">@color/white</item>
+        <item name="textColor2">@color/white</item>
+        <item name="textColor3">@color/white</item>
+        <item name="textColor4">@color/white</item>
+
+        <item name="background1">@color/grey_900</item>
+        <item name="background2">@color/black</item>
+    </style>
+
 </resources>

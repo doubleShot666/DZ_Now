@@ -25,6 +25,11 @@
     <item android:title="@string/other">
         <menu>
             <item
+                    android:id="@+id/nav_app_theme"
+                    android:icon="@drawable/ic_menu_earth"
+                    android:title="Thème de l'application"/>
+
+            <item
                     android:id="@+id/nav_language"
                     android:icon="@drawable/ic_menu_earth"
                     android:title="@string/language"/>

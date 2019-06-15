@@ -34,9 +34,7 @@ class DividerItemDecoration : RecyclerView.ItemDecoration {
         val childCount = parent.childCount
         for (i in 0 until childCount - 1) {
             val child = parent.getChildAt(i)
-
             val params = child.layoutParams as RecyclerView.LayoutParams
-
             val top = child.bottom + params.bottomMargin
             val bottom = top + divider!!.intrinsicHeight
 
@@ -46,7 +44,6 @@ class DividerItemDecoration : RecyclerView.ItemDecoration {
     }
 
     companion object {
-
         private val ATTRS = intArrayOf(android.R.attr.listDivider)
     }
 }

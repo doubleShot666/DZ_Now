@@ -35,5 +35,5 @@
             android:id="@+id/more_btn" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
             app:layout_constraintTop_toTopOf="@+id/fragment_title"
             app:layout_constraintBottom_toBottomOf="@+id/fragment_title"
-    />
+            android:text="@string/all"/>
 </android.support.constraint.ConstraintLayout>

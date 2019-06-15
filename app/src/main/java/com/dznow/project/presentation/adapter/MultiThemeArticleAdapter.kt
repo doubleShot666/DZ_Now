@@ -40,8 +40,8 @@ class MultiThemeArticleAdapter(articleList: HashMap<String,List<Article>>,
         p0.itemView.bottom = 8
 
         val entries = mArticles.entries.toTypedArray()
-        p0.more_btn.text = "Tout"
-        p0.title.text = entries[p1].key
+        p0.title.text = context.getString(context.resources.getIdentifier(entries[p1].key,"string",context.packageName))
+
         val adapter = ArticleAdapter(entries[p1].value,context,R.layout.article_horizental_row_item,this)
         p0.recyclerView.adapter = adapter
         p0.recyclerView.setHasFixedSize(true)

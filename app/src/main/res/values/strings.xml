@@ -7,7 +7,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="PrefFile">NdifPrefFile</string>
+    <string name="PrefFile">PrefFile</string>
     <string name="LangAR">العربية</string>
     <string name="LangFR">Français</string>
     <string name="about">À propos</string>
@@ -28,5 +28,16 @@
     <string name="language">Langue</string>
     <string name="exit">Quitter</string>
     <string name="other">Autres</string>
+    <string name="technologie">Technologie</string>
+    <string name="sport">sport</string>
+    <string name="culture">culture</string>
+    <string name="social">social</string>
+    <string name="sante">santé</string>
+    <string name="politique">politique</string>
+    <string name="economie">economie</string>
+    <string name="successful_article_saving">Article sauvegardé</string>
+    <string name="language_error_msg">Erreur lors de la modification de la langue</string>
+    <string name="language_success_msg">Changement de langue réussi</string>
+    <string name="theme_selection_success_msg">Sélection des thèmes réussie</string>
 
 </resources>

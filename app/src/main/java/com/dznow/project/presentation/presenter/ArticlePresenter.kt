@@ -1,5 +1,6 @@
 package com.dznow.project.presentation.presenter
 
+import com.dznow.project.R
 import com.dznow.project.domain.interactor.GetArticle
 import com.dznow.project.domain.interactor.SaveArticle
 import com.dznow.project.injection.Injection
@@ -33,7 +34,7 @@ class ArticlePresenter(articleView: ArticleView) : BasePresenter<ArticleView>(ar
     fun save(article: Article) {
         saveArticle.execute(object : DisposableObserver<Boolean>(){
             override fun onComplete() {
-
+                view.showMessage(view.retrieveContext().getString(R.string.successful_article_saving))
             }
 
             override fun onNext(t: Boolean) {

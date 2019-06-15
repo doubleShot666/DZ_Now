@@ -7,7 +7,7 @@ import com.dznow.project.domain.interactor.GetLanguage
 import com.dznow.project.presentation.base.BaseActivity
 import com.dznow.project.presentation.contract.SplashScreenView
 import com.dznow.project.presentation.presenter.SplashScreenPresenter
-import com.dznow.project.presentation.utils.LanguageAccessorImp
+import com.dznow.project.device.LanguageAccessorImp
 
 
 /**

@@ -19,7 +19,6 @@ class SplashScreenPresenter(splashScreenView: SplashScreenView, val getLanguage:
             }
             override fun onError(e: Throwable) {
             }
-
         })
     }
 

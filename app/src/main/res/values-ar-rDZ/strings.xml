@@ -8,7 +8,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="PrefFile">NdifPrefFile</string>
+    <string name="PrefFile">PrefFile</string>
     <string name="LangAR">العربية</string>
     <string name="LangFR">Français</string>
     <string name="about">حول</string>
@@ -29,4 +29,15 @@
     <string name="language">اللغة</string>
     <string name="exit">الخروج</string>
     <string name="other">آخر</string>
+    <string name="technologie">تكنولوجيا</string>
+    <string name="sport">رياضة</string>
+    <string name="culture">ثقافة</string>
+    <string name="social">مجتمع</string>
+    <string name="sante">الصحة</string>
+    <string name="politique">سياسة</string>
+    <string name="economie">اقتصاد</string>
+    <string name="successful_article_saving">حفظ المقال</string>
+    <string name="language_error_msg">خطأ أثناء تغيير اللغة</string>
+    <string name="language_success_msg">تغيير اللغة بنجاح</string>
+    <string name="theme_selection_success_msg">اختيار المواضيع  بنجاح</string>
 </resources>

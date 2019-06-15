@@ -1,9 +1,6 @@
 package com.dznow.project.presentation.activity
 
-import android.Manifest
-import android.content.Context
-import android.net.Uri
-import android.view.LayoutInflater
+
 import android.widget.*
 import com.bumptech.glide.Glide
 import com.dznow.project.R
@@ -13,21 +10,11 @@ import com.dznow.project.presentation.model.*
 import com.dznow.project.presentation.presenter.ArticlePresenter
 import kotlinx.android.synthetic.main.article_details_activity_layout.*
 import android.view.WindowManager
-import android.view.View
 import android.content.Intent
-import android.graphics.Bitmap
-import com.bumptech.glide.request.target.SimpleTarget
-import com.bumptech.glide.request.transition.Transition
-import android.provider.MediaStore
-import android.support.v4.app.ActivityCompat
-import android.webkit.*
-import java.io.ByteArrayOutputStream
-import java.util.*
 
 
 class ArticleDetailsActivity : BaseActivity<ArticlePresenter>(), ArticleView {
 
-    var bitmap : Bitmap? = null
 
     override fun instantiatePresenter(): ArticlePresenter {
         return ArticlePresenter(this)
@@ -37,15 +24,13 @@ class ArticleDetailsActivity : BaseActivity<ArticlePresenter>(), ArticleView {
         return R.layout.article_details_activity_layout
     }
 
-
-
     override fun initComponents() {
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         )
 
-        presenter.getArticle(intent.getStringExtra("articleId"))
+        presenter.getArticle(intent.getStringExtra(ARG_ARTICLE_ID))
 
         scrollView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
             if(scrollY < 50){
@@ -53,74 +38,19 @@ class ArticleDetailsActivity : BaseActivity<ArticlePresenter>(), ArticleView {
             } else if(scrollY > 50)
                 window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         }
-
-
     }
 
     override fun displayArticle(article: Article) {
         article_title.text = article.title
         article_editionTime.text = article.elapsedTime
         source_name.text = article.source
-        readTime_textView.text = "2 minutes"
-
-
-
-        Glide.with(applicationContext)
-            .asBitmap()
-            .load(article.image)
-            .into(object : SimpleTarget<Bitmap>() {
-                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                    bitmap = resource
-                }
-            })
-
-
+        readTime_textView.text = article.readTime
         Glide.with(this).load(article.sourceImg).into(source_imageView)
         Glide.with(this).load(article.image).into(article_imageview)
-        Glide.with(this).load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT--d305xVkd8wmuFGfAf6V0MSaryHm0eZF1WgFAX8LPssltybh").into(writer_imageView)
-        writer_textView.text = "Yaker Amina Hamza"
-        date_textView.text = "23/09/2018"
-
-        /* display webView */
-
-
-
-        article_webView.loadUrl("https://www.algerie360.com/feux-de-foret-trois-foyers-dincendie-enregistres-depuis-le-debut-de-juin-a-alger/")
-
-        println("test")
-
-        article_webView.webViewClient = object : WebViewClient(){
-            override fun onPageFinished(view: WebView?, url: String?) {
-                super.onPageFinished(view, url)
-                println(url)
-            }
-
-            override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
-                super.onReceivedError(view, request, error)
-                println(error?.description)
-            }
-
-            override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
-                return false
-            }
-        }
+        article_webView.loadUrl(article.url)
 
         share_btn.setOnClickListener {
-            if(bitmap != null){
-                val uri = getImageUri(applicationContext,bitmap!!)
-
-                val text = article.title
-                val shareIntent = Intent()
-                shareIntent.action = Intent.ACTION_SEND
-                shareIntent.type = "text/plain"
-                shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "test")
-                //shareIntent.putExtra(Intent.EXTRA_STREAM, uri)
-                //shareIntent.type = "image/*"
-                shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                startActivity(Intent.createChooser(shareIntent, "Share images..."))
-            }
-
-
+            shareArticle(article)
         }
 
         mark_btn.setOnClickListener {
@@ -128,18 +58,22 @@ class ArticleDetailsActivity : BaseActivity<ArticlePresenter>(), ArticleView {
         }
     }
 
-    fun getImageUri(inContext: Context, inImage: Bitmap): Uri {
-        ActivityCompat.requestPermissions(this,  arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),1)
+    override fun showMessage(message: String) {
+        Toast.makeText(applicationContext,message,Toast.LENGTH_SHORT).show()
+    }
 
-        val bytes = ByteArrayOutputStream()
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-        val path = MediaStore.Images.Media.insertImage(
-            contentResolver,
-            inImage,
-            UUID.randomUUID().toString() + ".png",
-            "drawing"
-        )
-        return Uri.parse(path)
+    fun shareArticle(article: Article){
+        val text = article.url
+        val shareIntent = Intent()
+        shareIntent.action = Intent.ACTION_SEND
+        shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, text)
+        shareIntent.type = "text/plain"
+        startActivity(Intent.createChooser(shareIntent, "Partage d'article"))
+    }
+
+
+    companion object {
+        const val ARG_ARTICLE_ID = "article_id"
     }
 
 

@@ -5,4 +5,5 @@ import com.dznow.project.presentation.model.Article
 
 interface ArticleView : BaseView {
     fun displayArticle(article: Article)
+    fun showMessage(message: String)
 }

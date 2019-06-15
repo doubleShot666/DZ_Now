@@ -1,4 +1,4 @@
-package com.dznow.project.presentation.utils
+package com.dznow.project.device
 
 import android.app.Activity
 import android.content.Context
@@ -10,8 +10,8 @@ import io.reactivex.Observable
 import java.util.*
 
 /**
- * This class store and retrieve the language of the app from the shared preferences.
- * @author brenco tech team
+ * Cette class sauvargde et récupère la langue de l'applciation des préférence paratgées.
+ * @property activity Pour accéder aux resources et modifier la langue de l'application.
  * @see LanguageAccessor
  */
 class LanguageAccessorImp(private val activity: Activity) : LanguageAccessor {
@@ -19,8 +19,6 @@ class LanguageAccessorImp(private val activity: Activity) : LanguageAccessor {
     override fun changeLanguage(language: String): Observable<Boolean> {
 
         return Observable.create { event ->
-
-            println("lang $language")
             val locale: Locale
             val p : SharedPreferences = activity.getSharedPreferences(
                     activity.resources.getString(R.string.PrefFile),
@@ -53,7 +51,6 @@ class LanguageAccessorImp(private val activity: Activity) : LanguageAccessor {
                     activity.resources.getString(R.string.PrefFile),
                     Context.MODE_PRIVATE)
             var language = p.getString("LangCode","")
-            println(language)
             if(language == null)
                 language = "FR"
 

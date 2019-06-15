@@ -32,7 +32,7 @@ class ThemeAdapter(themeList: List<Theme>,
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
         val theme = mThemes[p1]
         p0.title.text = theme.name
-        p0.articles.text = theme.articles.toString() + " articles"
+        p0.articles.text = theme.articles.size.toString() + " articles"
         Glide.with(context).load(theme.image).into(p0.image)
         p0.itemView.setOnClickListener {
             //p0.title.isSelected = !p0.title.isSelected
