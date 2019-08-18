@@ -1,8 +1,9 @@
-package com.dznow.project.data
+package com.dznow.project.data.repository
 
 import com.dznow.project.domain.repository.ArticlesRepository
 import com.dznow.project.presentation.model.*
 import io.reactivex.Observable
+import io.reactivex.functions.BiFunction
 
 /**
  * Cette classe implémente l'interface [ArticlesRepository] simulant en mémoire les données utilisées dans
@@ -193,33 +194,36 @@ class ArticlesRepositoryImp : ArticlesRepository {
     }
 
     override fun getArticlesList(selectionParam: List<Pair<String, String>>): Observable<List<Article>> {
-        return Observable.create { e ->
-            var list = ArrayList<Article>()
-            for(param in selectionParam)
-                when(param.first){
-                    "filter" -> {
-                        when(param.second){
-                            "top" -> list = topArticleList
-                            "latest" -> list = latestArticlesList
-                            "local" -> list = localArticleList
-                            "saved" -> list = savedArticles
-                        }
-                    }
-                    "theme" ->{
-                        for(theme in themeList)
-                            if (theme.second.name == param.second)
-                                list = theme.second.articles
+        var observable : Observable<List<Article>> = Observable.create {}
+        var list = ArrayList<Article>()
+        for(param in selectionParam)
+            when(param.first){
+                "filter" -> {
+                    when(param.second){
+                        "top" -> observable = Observable.create { e -> e.onNext(topArticleList)}
+                        "latest" -> observable = Observable.create { e -> e.onNext(latestArticlesList)}
+                        "local" -> observable = Observable.create { e -> e.onNext(localArticleList) }
+                        "saved" -> observable = UserDataStoreFactory().create(true).getSavedArticles()
                     }
                 }
-            e.onNext(list)
-        }
+                "theme" ->{
+                    for(theme in themeList)
+                        if (theme.second.name == param.second)
+                            list = theme.second.articles
+                    observable = Observable.create { e -> e.onNext(list)}
+                }
+            }
+
+        return observable
     }
 
     override fun saveArticle(article: Article): Observable<Boolean> {
-        return Observable.create { e ->
-            savedArticles.add(article)
-            e.onComplete()
-        }
+        return Observable.combineLatest(
+            UserDataStoreFactory().create(true).saveArticle(article),
+            UserDataStoreFactory().create(false).saveArticle(article),
+            BiFunction { res1, res2 ->
+                res1 && res2
+            })
     }
 
     override fun getThemesList(): Observable<List<Pair<Boolean, Theme>>> {

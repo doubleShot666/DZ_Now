@@ -4,4 +4,5 @@ import com.dznow.project.presentation.base.BaseView
 
 interface SplashScreenView : BaseView {
     fun finishView()
+    fun showLoginButton()
 }

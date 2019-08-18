@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "113269946337",
+    "firebase_url": "https://dz-now.firebaseio.com",
+    "project_id": "dz-now",
+    "storage_bucket": "dz-now.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:113269946337:android:0c821fbe61d79cb3",
+        "android_client_info": {
+          "package_name": "com.dznow.project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "113269946337-ebptgl7kij3m10p76h3vqcqrc6pckk8e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dznow.project",
+            "certificate_hash": "64fc8de56c51e4cece15d07f2f1030f448e00a64"
+          }
+        },
+        {
+          "client_id": "113269946337-u46n7gd4hanmf196h738m7bn0s7u508j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvlE8AJN4l5TCVFreBmbabkBmDWoD9plk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "113269946337-u46n7gd4hanmf196h738m7bn0s7u508j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
